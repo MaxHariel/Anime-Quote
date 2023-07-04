@@ -37,6 +37,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: "{{defaultContext}}:src/main/docker/Dockerfile.native-micro"
+          context: .
+          file: src/main/docker/Dockerfile.native-micro
           push: true
           tags: maxhardev/animequote:latest
