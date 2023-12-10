@@ -8,11 +8,19 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      MONGO_CONNECTION: ${{ secrets.MONGO_CONNECTION }}
+      MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}  
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Configurar ambiente
+        run: |
+          echo "MONGO_CONNECTION=${MONGO_CONNECTION}" >> .env
+          echo "MONGO_DATABASE=${MONGO_DATABASE}" >> .env
+      
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
