@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  quarkus:
+    image: maxhardev/animequote:latest
+    ports:
+      - 8080:8080
+    networks:
+      - quarkus-network
+  db:
+    image: mongo:4.4
+    ports:
+      - 27017:27017
+    networks:
+      - quarkus-network
+
+networks:
+  quarkus-network:
+    driver: bridge
